@@ -139,15 +139,17 @@ int main(void) {
 	Stack s1 = initStack();
 	Stack s2 = initStack();
 	
-	// Enqueue first three pieces of data
-	for (int i = 0; i < 3; i++) {
+	// Enqueue all items but the last of the data array
+	for (int i = 0; i < len - 1; i++) {
 		enqueue(s1, data[i]);
 	}
 
+	// Dequeue the first two items
 	for (int i = 0; i < 2; i++) printf("%d ", dequeue(s1, s2).number);
 	// Even after dequeueing has begun, enqueueing can continue and the
 	// output will still behave like a Queue
 	enqueue(s1, data[len - 1]);
+	// Dequeue remaining items
 	for (int i = 2; i < len; i++) printf("%d ", dequeue(s1, s2).number);
 
 	printf("\n\n");
