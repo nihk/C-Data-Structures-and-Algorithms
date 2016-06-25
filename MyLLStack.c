@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Struct definitions
 typedef struct {
 	int number;
 } StackData;
@@ -16,6 +17,7 @@ typedef struct {
 	NodePtr top;
 } StackType, *Stack;
 
+// Function definitions
 NodePtr makeNode(StackData n) {
 	NodePtr np = malloc(sizeof *np);
 	np->data = n;
@@ -122,7 +124,7 @@ int main(void) {
 	push(stack, data1);
 	push(stack, data2);
 	push(stack, data3);
-	while(!empty(stack)) {
+	while (!empty(stack)) {
 		printf("%d ", pop(stack).number);
 	}
 
