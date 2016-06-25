@@ -114,38 +114,46 @@ char getPairMatch(char c) {
 }
 
 int main(void) {
-	StackData data1 = makeStackData(1);
-	StackData data2 = makeStackData(2);
-	StackData data3 = makeStackData(3);
-	StackData data4 = makeStackData(4);
+	const int len = 4;
+	StackData data[] = {
+		makeStackData(1),
+		makeStackData(2),
+		makeStackData(3),
+		makeStackData(4)
+	};
 
 	// Basic demo of using a Stack
 	Stack stack = initStack();
-	push(stack, data1);
-	push(stack, data2);
-	push(stack, data3);
+	for (int i = 0; i < len; i++) {
+		push(stack, data[i]);
+	}
+
 	while (!empty(stack)) {
 		printf("%d ", pop(stack).number);
 	}
 
-	// Simulating a Queue using two Stacks. 
-	// Input and output are both 1234
+	printf("\n\n");
+
+
+	// Simulating a Queue using two Stacks.
 	Stack s1 = initStack();
 	Stack s2 = initStack();
 	
-	enqueue(s1, data1);
-	enqueue(s1, data2);
-	enqueue(s1, data3);
+	// Enqueue first three pieces of data
+	for (int i = 0; i < 3; i++) {
+		enqueue(s1, data[i]);
+	}
 
-	printf("\n\n%d", dequeue(s1, s2).number);
-	printf("%d", dequeue(s1, s2).number);
-	enqueue(s1, data4);
-	printf("%d", dequeue(s1, s2).number);
-	printf("%d\n\n", dequeue(s1, s2).number);
+	for (int i = 0; i < 2; i++) printf("%d ", dequeue(s1, s2).number);
+	// Even after dequeueing has begun, enqueueing can continue and the
+	// output will still behave like a Queue
+	enqueue(s1, data[len - 1]);
+	for (int i = 2; i < len; i++) printf("%d ", dequeue(s1, s2).number);
+
+	printf("\n\n");
 
 	// Testing for a balanced expression consisting of brackets/parens/braces
 	char expression[] = "[()]{}{[()()]()}";
-	
 	if (isBalanced(expression)) {
 		printf("%s is balanced\n", expression);
 	} else {
@@ -153,7 +161,6 @@ int main(void) {
 	}
 
 	char expression2[] = "(((((())";
-	
 	if (isBalanced(expression2)) {
 		printf("%s is balanced\n", expression2);
 	} else {
