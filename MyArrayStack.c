@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 10
+#define MAX 100
 
 typedef struct {
 	int number;
@@ -49,6 +49,32 @@ void printPop(Stack s) {
 	printf("\n");
 }
 
+// CTCI question on implementing three stacks using a single array
+int stackSize = MAX;
+int stackContents[MAX * 3];
+int stackPointers[] = { -1, -1, -1 };
+
+int getStackIndex(int stackNum) {
+	return MAX * stackNum + stackPointers[stackNum];
+}
+
+int CTCIEmpty(int stackNum) {
+	return stackPointers[stackNum] == -1;
+}
+
+void CTCIPush(int stackNum, int n) {
+	if (stackPointers[stackNum] >= stackSize - 1) exit(0);  // full
+	stackPointers[stackNum]++;;
+	stackContents[getStackIndex(stackNum)] = n;
+}
+
+int CTCIPop(int stackNum) {
+	if (CTCIEmpty(stackNum)) exit(0);  // empty
+	int value = stackContents[getStackIndex(stackNum)];
+	stackPointers[stackNum]--;
+	return value;
+}
+
 int main(void) {
 	// Basic use of an array-based Stack
 	const int len = 3;
@@ -64,6 +90,21 @@ int main(void) {
 	}
 
 	printPop(s);
+	printf("\n");
+
+	// CTCI question on implementing three stacks using a single array
+	for (int i = 1; i <= 5; i++) {
+		CTCIPush(0, i);
+		CTCIPush(1, i * 2);
+		CTCIPush(2, i * 3);
+	}
+
+	for (int i = 0; i < 3; i++) {
+		while (!CTCIEmpty(i)) {
+			printf("%d ", CTCIPop(i));
+		}
+		printf("\n");
+	}
 
 	return 0;
 }
