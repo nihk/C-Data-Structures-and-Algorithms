@@ -18,7 +18,6 @@ typedef struct {
 	NodePtr tail;
 } QueueType, *Queue;
 
-
 // Function definitions
 NodePtr makeNode(QueueData data) {
 	NodePtr np = malloc(sizeof *np);
