@@ -114,9 +114,10 @@ void delete(NodePtr *head, int index) {
 	NodePtr curr = *head;
 	int counter = 0;
 
+	// Attempting to delete head
 	if (index == 0) {
-		prev = curr;
-		*head = curr->next;
+		prev = *head;
+		*head = (*head)->next;
 		free(prev);
 		return;
 	}
@@ -133,6 +134,47 @@ void delete(NodePtr *head, int index) {
 
 	prev->next = curr->next;
 	free(curr);
+}
+
+void deleteNthNodeFromEnd(NodePtr *head, int n) {
+	NodePtr prev = NULL;
+	NodePtr delNode = *head;
+	NodePtr curr = *head;
+	int interval = 0;
+
+	while (curr->next != NULL && interval != n) {
+		curr = curr->next;
+		interval++;
+	}
+
+	if (curr == NULL || interval != n) exit(0);  // out of bounds
+
+	while (curr->next != NULL) {
+		prev = delNode;
+		delNode = delNode->next;
+		curr = curr->next;
+	}
+
+	// Attempting to delete head
+	if (prev == NULL) {
+		prev = *head;
+		*head = (*head)->next;
+		free(prev);
+		return;
+	}
+
+	prev->next = delNode->next;
+	free(delNode);
+}
+
+// "Deletes" a middle node using just the node itself
+void deleteMiddle(NodePtr node) {
+	if (node->next == NULL) exit(0);  // not a 'middle' node (the last, in fact)
+
+	NodePtr x = node->next;
+	node->data = x->data;
+	node->next = x->next;
+	free(x);
 }
 
 NodePtr search(NodePtr head, NodeData data) {
@@ -174,6 +216,9 @@ int main(void) {
 	reverse(&head);
 
 	NodePtr revrev = getReverse(head);
+
+	deleteNthNodeFromEnd(&revrev, 3);
+	deleteMiddle(revrev->next);
 
 	printLL(revrev);
 	return 0;
