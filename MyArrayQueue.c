@@ -2,18 +2,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100
+#include "MyArrayQueue.h"
 
-typedef struct {
-	int number;
-} QueueData;
-
-typedef struct {
-	int head;
-	int tail;
-	QueueData data[MAX];
-} QueueType, *Queue;
-
+// Function definitions
 QueueData makeQueueData(int n) {
 	QueueData data;
 	data.number = n;
@@ -49,27 +40,4 @@ QueueData dequeue(Queue q) {
 
 void printQueueData(QueueData data) {
 	printf("%d ", data.number);
-}
-
-int main(void) {
-	const int len = 3;
-	QueueData data[] = {
-		makeQueueData(1),
-		makeQueueData(2),
-		makeQueueData(3)
-	};
-
-	// Basic demonstration of using a Queue
-	Queue q = initQueue();
-
-	for (int i = 0; i < len; i++) {
-		enqueue(q, data[i]);
-	}
-
-	while (!empty(q)) {
-		printQueueData(dequeue(q));
-	}
-	printf("\n");
-
-	return 0;
 }

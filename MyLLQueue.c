@@ -2,21 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-// Struct definitions
-typedef struct {
-	int number;
-} QueueData;
-
-typedef struct node {
-	QueueData data;
-	struct node *next;
-} Node, *NodePtr;
-
-typedef struct {
-	NodePtr head;
-	NodePtr tail;
-} QueueType, *Queue;
+#include "MyLLQueue.h"
 
 // Function definitions
 NodePtr makeNode(QueueData data) {
@@ -88,41 +74,4 @@ QueueData pop(Queue stack, Queue stackHelper) {
 	}
 
 	return data;
-}
-
-int main(void) {
-	const int len = 3;
-	QueueData data[] = {
-		makeQueueData(1),
-		makeQueueData(2),
-		makeQueueData(3)
-	};
-
-	// Basic Queue operations
-	Queue q = initQueue();
-
-	for (int i = 0; i < len; i++) {
-		enqueue(q, data[i]);
-	}
-
-	while (!isEmpty(q)) {
-		printf("%d ", dequeue(q).number);
-	}
-
-	printf("\n\n");
-
-	// Simulate a stack using two queues
-	Queue stack = initQueue();
-	Queue stackHelper = initQueue();
-
-	for (int i = 0; i < len; i++) {
-		push(stack, data[i]);
-	}
-
-	for (int i = 0; i < len; i++) {
-		printf("%d ", pop(stack, stackHelper).number);
-	}
-
-	printf("\n");
-	return 0;
 }

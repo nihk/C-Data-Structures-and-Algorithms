@@ -2,17 +2,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100
+#include "MyArrayStack.h"
 
-typedef struct {
-	int number;
-} StackData;
-
-typedef struct {
-	int top;
-	StackData arr[MAX];
-} StackType, *Stack;
-
+// Function definitions
 StackData makeStackData(int n) {
 	StackData data;
 	data.number = n;
@@ -73,38 +65,4 @@ int CTCIPop(int stackNum) {
 	int value = stackContents[getStackIndex(stackNum)];
 	stackPointers[stackNum]--;
 	return value;
-}
-
-int main(void) {
-	// Basic use of an array-based Stack
-	const int len = 3;
-	StackData data[] = {
-		makeStackData(1),
-		makeStackData(2),
-		makeStackData(3)
-	};
-	Stack s = initStack();
-	
-	for (int i = 0; i < len; i++) {
-		push(s, data[i]);
-	}
-
-	printPop(s);
-	printf("\n");
-
-	// CTCI question on implementing three stacks using a single array
-	for (int i = 1; i <= 5; i++) {
-		CTCIPush(0, i);
-		CTCIPush(1, i * 2);
-		CTCIPush(2, i * 3);
-	}
-
-	for (int i = 0; i < 3; i++) {
-		while (!CTCIEmpty(i)) {
-			printf("%d ", CTCIPop(i));
-		}
-		printf("\n");
-	}
-
-	return 0;
 }
