@@ -51,6 +51,7 @@ void insert(ResizeableArray *arr, int index, int n) {
 	// Make room for the new insertion
 	arr->length++;  
 
+	// Shift everything above the index rightwards to create a gap for it
 	for (int i = arr->length - 1; i > index; i--) {
 		arr->arr[i] = arr->arr[i - 1];
 	}
@@ -67,6 +68,8 @@ void delete(ResizeableArray *arr, int index) {
 		printf("Array index out of bounds\n");
 		exit(0);
 	}
+
+	// Shift everything above the index leftwards to "delete" it
 	for (int i = index; i < arr->length - 1; i++) {
 		arr->arr[i] = arr->arr[i + 1];
 	}
