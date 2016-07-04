@@ -38,14 +38,14 @@ void insert(ResizeableArray *arr, int index, int n) {
 		exit(0);
 	}
 
-	if (arr->length >= arr->maxSize) {
-		resizeArray(arr);
-	}
-
 	// Appending to end of array
 	if (index == arr->length) { 
 		add(arr, n); 
 		return;
+	}
+
+	if (arr->length >= arr->maxSize) {
+		resizeArray(arr);
 	}
 
 	// Make room for the new insertion
