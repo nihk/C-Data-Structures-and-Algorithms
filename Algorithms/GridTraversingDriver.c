@@ -37,20 +37,18 @@ int main(void) {
 	*/
 
 	// Flood fill (like MS Paint bucket fill)
-    int image[NUM_FLOOD_ROWS_AND_COLS][NUM_FLOOD_ROWS_AND_COLS] = {
-        { 1,1,1,1,1,1 },
-        { 1,0,1,0,0,1 },
-        { 1,1,0,0,0,1 },
-        { 1,0,0,0,1,1 },
-        { 1,0,0,1,0,1 },
-        { 1,1,1,1,1,1 },
-    };
+	int image[NUM_FLOOD_ROWS_AND_COLS][NUM_FLOOD_ROWS_AND_COLS] = {
+	    { 1,1,1,1,1,1 },
+	    { 1,0,1,0,0,1 },
+	    { 1,1,0,0,0,1 },
+	    { 1,0,0,0,1,1 },
+	    { 1,0,0,1,0,1 },
+	    { 1,1,1,1,1,1 },
+	};
 
 	startRow = 2;
 	startCol = 3;
-
 	floodFill(image, startRow, startCol);
-
 	printFloodGrid(image);
 
 	/* Flood fill output:
