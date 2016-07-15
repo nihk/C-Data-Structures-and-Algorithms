@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX 50
 #include "Sorting.h"
 
 // Function definitions
@@ -36,8 +37,40 @@ int getSmallest(int arr[], int lo, int hi) {
 	return min;
 }
 
-void swap(int arr[], int i, int min) {
+void mergeSort(int arr[], int low, int high) {
+	if (low < high) {
+		int middle = (low + high) / 2;
+		mergeSort(arr, low, middle);
+		mergeSort(arr, middle + 1, high);
+		merge(arr, low, middle, high);
+	}
+}
+
+void merge(int arr[], int low, int middle, int high) {
+	int temp[MAX];
+	int i = low;
+	int j = middle + 1;
+	int k = low;
+
+	while (i <= middle || j <= high) {
+		if (i > middle) {
+			temp[k++] = arr[j++];
+		} else if (j > high) {
+			temp[k++] = arr[i++];
+		} else if (arr[i] < arr[j]) {
+			temp[k++] = arr[i++];
+		} else {  // arr[j] <= arr[i]
+			temp[k++] = arr[j++];
+		}
+	}
+
+	for (i = low; i <= high; i++) {
+		arr[i] = temp[i];
+	}
+}
+
+void swap(int arr[], int i, int j) {
 	int temp = arr[i];
-	arr[i] = arr[min];
-	arr[min] = temp;
+	arr[i] = arr[j];
+	arr[j] = temp;
 }
