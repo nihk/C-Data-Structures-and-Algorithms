@@ -135,6 +135,6 @@ void swap(int arr[], int i, int j) {
 
 // returns a random i where m <= i <= n
 int random(int m, int n) {
-	int offset = rand()/(RAND_MAX + 1.0) * (n - m + 1);
+	int offset = rand() / (RAND_MAX + 1.0) * (n - m + 1);
 	return m + offset;
 }
