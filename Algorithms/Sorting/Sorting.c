@@ -50,18 +50,19 @@ void merge(int arr[], int low, int middle, int high) {
 	int temp[MAX];
 	int i = low;
 	int j = middle + 1;
-	int k = low;
+	int index = low;
 
 	while (i <= middle || j <= high) {
 		if (i > middle) {
-			temp[k++] = arr[j++];
+			temp[index] = arr[j++];
 		} else if (j > high) {
-			temp[k++] = arr[i++];
+			temp[index] = arr[i++];
 		} else if (arr[i] < arr[j]) {
-			temp[k++] = arr[i++];
+			temp[index] = arr[i++];
 		} else {  // arr[j] <= arr[i]
-			temp[k++] = arr[j++];
+			temp[index] = arr[j++];
 		}
+		index++;
 	}
 
 	for (i = low; i <= high; i++) {
