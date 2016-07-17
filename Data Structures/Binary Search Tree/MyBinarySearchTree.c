@@ -54,6 +54,7 @@ void postOrder(TreeNodePtr node) {
 }
 
 // From a file which specifically defines the tree, e.g. A B @ @ C @ @
+// Note: this function can potentially create a regular binary tree (i.e. not a BST)
 TreeNodePtr buildTree(FILE *fp) {
 	char word[MAX + 1];
 	fscanf(fp, "%s", word);
@@ -113,6 +114,79 @@ TreeNodePtr find(BinaryTree binaryTree, NodeData data) {
 	}
 
 	return curr;
+}
+
+// Returns the found node and also captures its parent; used for node deletion
+TreeNodePtr find2(BinaryTree binaryTree, TreeNodePtr *parent, NodeData data) {
+	TreeNodePtr curr = binaryTree.root;
+	int comparison;
+
+	while (curr != NULL && (comparison = strcmp(data.word, curr->data.word)) != 0) {
+		if (comparison < 0) {
+			*parent = curr;
+			curr = curr->left;
+		} else {
+			*parent = curr;
+			curr = curr->right;
+		}
+	}
+
+	return curr;
+}
+
+void delete(BinaryTree binaryTree, NodeData data) {
+	TreeNodePtr parent, x;
+	parent = NULL;
+	x = find2(binaryTree, &parent, data);
+
+	if (x == NULL) return;
+	
+	// x has two children, so replace its data with its subsequent 
+	// in-order node and then delete that latter node
+	if (x->left != NULL && x->right != NULL) {
+		parent = x;
+		TreeNodePtr aux = x->right;
+		while (aux->left != NULL) {
+			parent = aux;
+			aux = aux->left;
+		}
+		x->data = aux->data;
+		x = aux;
+	}
+
+	// x has no children
+	if (x->left == NULL && x->right == NULL) {
+		if (parent == NULL) {printf("parent null\n"); return;}
+		if (parent->right == x) {
+			parent->right = NULL;
+		} else {
+			parent->left = NULL;
+		}
+		free(x);
+		return;
+	}
+
+	// x has no left child
+	if (x->left == NULL && x->right != NULL) {
+		if (parent->left == x) {
+			parent->left = x->right;
+		} else {
+			parent->right = x->right;
+		}
+		free(x);
+		return;
+	}
+
+	// x has no right child
+	if (x->left != NULL && x->right == NULL) {
+		if (parent->left == x) {
+			parent->left = x->left;
+		} else {
+			parent->right = x->left;
+		}
+		free(x);
+		return;
+	}
 }
 
 // Helper function to read an individual word from a file into the char word[] argument

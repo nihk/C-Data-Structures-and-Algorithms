@@ -29,5 +29,7 @@ void postOrder(TreeNodePtr node);
 TreeNodePtr buildTree(FILE *fp);
 TreeNodePtr findOrInsert(BinaryTree binaryTree, NodeData data);
 TreeNodePtr find(BinaryTree binaryTree, NodeData data);
+TreeNodePtr find2(BinaryTree binaryTree, TreeNodePtr *parent, NodeData data);
+void delete(BinaryTree binaryTree, NodeData data);
 int getWord(FILE *fp, char word[]);
 int numNodes(TreeNodePtr node);

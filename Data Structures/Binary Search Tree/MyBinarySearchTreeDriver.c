@@ -12,13 +12,14 @@ int main(void) {
 	fclose(fp);
 
 	// The three means of traversing a binary tree
+	printf("Pre-order\n");
 	preOrder(binaryTree.root);
-	printf("\n");
-	//inOrder(binaryTree.root);
-	//printf("\n");
-	//postOrder(binaryTree.root);
-	//printf("\n");
-
+	printf("\nIn-order\n");
+	inOrder(binaryTree.root);
+	printf("\nPost-order\n");
+	postOrder(binaryTree.root);
+	printf("\n\n");
+	
 	NodeData data = makeNodeData("Z", 666);
 	findOrInsert(binaryTree, data);
 
@@ -68,6 +69,54 @@ int main(void) {
 	} else {
 		printf("Didn't find it.\n");
 	}
+
+	// Making a balanced BST
+	NodeData a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s;
+	a = makeNodeData("A", 1);
+	b = makeNodeData("B", 1);
+	c = makeNodeData("C", 1);
+	d = makeNodeData("D", 1);
+	e = makeNodeData("E", 1); 
+	f = makeNodeData("F", 1);
+	g = makeNodeData("G", 1);
+	h = makeNodeData("H", 1);
+	i = makeNodeData("I", 1);
+	j = makeNodeData("J", 1);
+	k = makeNodeData("K", 1);
+	l = makeNodeData("L", 1);
+	m = makeNodeData("M", 1);
+	n = makeNodeData("N", 1);
+	o = makeNodeData("O", 1);
+	p = makeNodeData("P", 1);
+	q = makeNodeData("Q", 1);
+	r = makeNodeData("R", 1);
+	s = makeNodeData("S", 1);
+
+	binaryTree.root = makeTreeNode(i);
+	findOrInsert(binaryTree, d);
+	findOrInsert(binaryTree, b);
+	findOrInsert(binaryTree, a);
+	findOrInsert(binaryTree, c);
+	findOrInsert(binaryTree, f);
+	findOrInsert(binaryTree, e);
+	findOrInsert(binaryTree, h);
+	findOrInsert(binaryTree, g);
+	findOrInsert(binaryTree, n);
+	findOrInsert(binaryTree, k);
+	findOrInsert(binaryTree, j);
+	findOrInsert(binaryTree, l);
+	findOrInsert(binaryTree, m);
+	findOrInsert(binaryTree, q);
+	findOrInsert(binaryTree, p);
+	findOrInsert(binaryTree, o);
+	findOrInsert(binaryTree, s);
+	findOrInsert(binaryTree, r);
+
+	printf("\n\nPre-order:\n");
+	preOrder(binaryTree.root);
+	delete(binaryTree, i);
+	printf("\nNew Pre-order:\n");
+	preOrder(binaryTree.root);
 
 	return 0;
 }
