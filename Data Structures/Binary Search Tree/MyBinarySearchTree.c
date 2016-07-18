@@ -147,16 +147,16 @@ void delete(BinaryTree binaryTree, NodeData data) {
 	// in-order successor will always have <= 1 child.
 	if (x->left != NULL && x->right != NULL) {
 		parent = x;
-		TreeNodePtr aux = x->right;
-		while (aux->left != NULL) {
-			parent = aux;
-			aux = aux->left;
+		TreeNodePtr xSuccessor = x->right;
+		while (xSuccessor->left != NULL) {
+			parent = xSuccessor;
+			xSuccessor = xSuccessor->left;
 		}
 		// Replace x's data with its in-order successor's data then assign
 		// the in-order successor node to x for it to be deleted further on in
 		// this function
-		x->data = aux->data;
-		x = aux;
+		x->data = xSuccessor->data;
+		x = xSuccessor;
 	}
 
 	// x has no children
