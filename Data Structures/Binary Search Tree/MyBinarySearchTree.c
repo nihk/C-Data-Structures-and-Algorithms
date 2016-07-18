@@ -143,8 +143,8 @@ void delete(BinaryTree binaryTree, NodeData data) {
 	
 	// x has two children, so replace its data with its in-order successor.
 	// That latter node is then deleted thru one of the subsequent three
-	// 'if' statement blocks. Therefore, if x had two children, its
-	// in-order successor will always have <= 1 child.
+	// 'if' statement blocks, since it will always have at least its left
+	// child node as NULL
 	if (x->left != NULL && x->right != NULL) {
 		parent = x;
 		TreeNodePtr xSuccessor = x->right;
