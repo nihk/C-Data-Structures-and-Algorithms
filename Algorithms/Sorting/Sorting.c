@@ -26,9 +26,9 @@ void selectionSort(int arr[], int len) {
 	}
 }
 
-int getSmallest(int arr[], int lo, int hi) {
-	int min = lo;
-	for (int j = lo + 1; j < hi; j++) {
+int getSmallest(int arr[], int low, int high) {
+	int min = low;
+	for (int j = low + 1; j < high; j++) {
 		if (arr[j] < arr[min]) {
 			min = j;
 		}
