@@ -8,5 +8,5 @@ void quicksort1(int arr[], int low, int high);
 int partition1(int arr[], int low, int high);
 void quicksort2(int arr[], int low, int high);
 int partition2(int arr[], int low, int high);
-void swap(int arr[], int i, int min);
+void swap(int arr[], int i, int j);
 int random(int m, int n);
