@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX 50
 #include "Sorting.h"
+
+#define MAX 50
 
 // Function definitions
 void insertionSort(int arr[], int len) {
