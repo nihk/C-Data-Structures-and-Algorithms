@@ -8,5 +8,6 @@ void quicksort(int arr[], int low, int high);
 int partition(int arr[], int low, int high);
 void heapsort(int arr[], int high);
 void siftDown(int arr[], int key, int root, int last);
+void shellsort(int arr[], int len, int interval);
 void swap(int arr[], int i, int j);
 int random(int m, int n);

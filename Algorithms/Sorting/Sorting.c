@@ -125,6 +125,18 @@ void siftDown(int arr[], int key, int root, int last) {
 	arr[root] = key;
 }
 
+void shellsort(int arr[], int len, int interval) {
+	for (int i = interval; i < len; i++) {
+		int key = arr[i];
+		int j = i - interval;
+		while (j >= 0 && arr[j] > key) {
+			arr[j + interval] = arr[j];
+			j -= interval;
+		}
+		arr[j + interval] = key;
+	}
+}
+
 void swap(int arr[], int i, int j) {
 	int temp = arr[i];
 	arr[i] = arr[j];
