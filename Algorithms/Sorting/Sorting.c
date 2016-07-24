@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Sorting.h"
-
 #define MAX 50
 
 // Function definitions
