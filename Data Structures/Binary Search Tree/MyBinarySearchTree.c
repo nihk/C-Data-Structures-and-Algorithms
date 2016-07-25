@@ -194,6 +194,19 @@ void delete(BinaryTree binaryTree, NodeData data) {
 	}
 }
 
+void reverse(TreeNodePtr node) {
+	if (node == NULL) {
+		return;
+	}
+
+	TreeNodePtr temp = node->left;
+	node->left = node->right;
+	node->right = temp;
+
+	reverse(node->left);
+	reverse(node->right);
+}
+
 // Helper function to read an individual word from a file into the char word[] argument
 int getWord(FILE *fp, char word[]) {
 	char ch;
@@ -226,4 +239,27 @@ int numNodes(TreeNodePtr node) {
 	}
 
 	return 1 + numNodes(node->left) + numNodes(node->right);
+}
+
+int numLeaves(TreeNodePtr node) {
+	if (node == NULL) {
+		return 0;
+	}
+	if (node->left == NULL && node->right == NULL) {
+		return 1;
+	}
+
+	return numLeaves(node->left) + numLeaves(node->right);
+}
+
+int treeHeight(TreeNodePtr node) {
+	if (node == NULL) {
+		return 0;
+	}
+
+	return 1 + max(treeHeight(node->left), treeHeight(node->right));
+}
+
+int max(int a, int b) {
+	return a > b ? a : b;
 }

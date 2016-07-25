@@ -32,4 +32,8 @@ TreeNodePtr find(BinaryTree binaryTree, NodeData data);
 TreeNodePtr find2(BinaryTree binaryTree, TreeNodePtr *parent, NodeData data);
 void delete(BinaryTree binaryTree, NodeData data);
 int getWord(FILE *fp, char word[]);
+void reverse(TreeNodePtr node);
 int numNodes(TreeNodePtr node);
+int numLeaves(TreeNodePtr node);
+int treeHeight(TreeNodePtr node);
+int max(int a, int b);

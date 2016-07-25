@@ -114,8 +114,15 @@ int main(void) {
 
 	printf("\n\nPre-order:\n");
 	preOrder(binaryTree.root);
-	delete(binaryTree, i);
+	NodeData x = i;
+	printf("\nDelete node: %s\n", x.word);
+	delete(binaryTree, x);
 	printf("\nNew Pre-order:\n");
+	preOrder(binaryTree.root);
+
+	printf("\nReversing..\n");
+	reverse(binaryTree.root);
+	printf("\nPrinting reverse in Pre-order:\n");
 	preOrder(binaryTree.root);
 
 	return 0;
